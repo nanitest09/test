@@ -1,0 +1,658 @@
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Plus+Jakarta+Sans%3Awght%40400%3B500%3B700%3B800"
+    />
+
+    <title>Galileo Design</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries">
+	// Open the Modal
+        function openModal(imageSrc) {
+            var modal = document.getElementById("imageModal");
+            var modalImg = document.getElementById("modalImage");
+            modal.style.display = "block";
+            modalImg.src = imageSrc;
+        }
+
+        // Close the Modal
+        function closeModal() {
+            var modal = document.getElementById("imageModal");
+            modal.style.display = "none";
+        }
+
+        // Close the modal when clicking outside of the image
+        window.onclick = function(event) {
+            var modal = document.getElementById("imageModal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }</script>
+
+    <style>
+        /* General styles */
+        .flex {
+            display: flex;
+        }
+        .flex-1 {
+            flex: 1;
+        }
+        .flex-col {
+            flex-direction: column;
+        }
+        .gap-4 {
+            gap: 1rem;
+        }
+        .rounded-lg {
+            border-radius: 0.5rem;
+        }
+        .min-w-60 {
+            min-width: 15rem;
+        }
+        .w-full {
+            width: 100%;
+        }
+        .bg-center {
+            background-position: center;
+        }
+        .bg-no-repeat {
+            background-repeat: no-repeat;
+        }
+        .aspect-video {
+            aspect-ratio: 16/9;
+        }
+        .bg-cover {
+            background-size: cover;
+        }
+        .rounded-xl {
+            border-radius: 0.75rem;
+        }
+        .text-[#181511] {
+            color: #181511;
+        }
+        .text-base {
+            font-size: 1rem;
+        }
+        .font-medium {
+            font-weight: 500;
+        }
+        .leading-normal {
+            line-height: 1.5;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+        }
+
+        /* Modal Content (Image) */
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+
+        /* Close Button */
+        .close {
+            position: absolute;
+            top: 30px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+  </head>
+  <body>
+ <!-- Modal -->
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+    <div class="relative flex size-full min-h-screen flex-col bg-white group/design-root overflow-x-hidden" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
+      <div class="layout-container flex h-full grow flex-col">
+        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f4f3f0] px-10 py-3">
+          <div class="flex items-center gap-4 text-[#181511]">
+            <div class="size-4">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_6_543)">
+                  <path
+                    d="M42.1739 20.1739L27.8261 5.82609C29.1366 7.13663 28.3989 10.1876 26.2002 13.7654C24.8538 15.9564 22.9595 18.3449 20.6522 20.6522C18.3449 22.9595 15.9564 24.8538 13.7654 26.2002C10.1876 28.3989 7.13663 29.1366 5.82609 27.8261L20.1739 42.1739C21.4845 43.4845 24.5355 42.7467 28.1133 40.548C30.3042 39.2016 32.6927 37.3073 35 35C37.3073 32.6927 39.2016 30.3042 40.548 28.1133C42.7467 24.5355 43.4845 21.4845 42.1739 20.1739Z"
+                    fill="currentColor"
+                  ></path>
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M7.24189 26.4066C7.31369 26.4411 7.64204 26.5637 8.52504 26.3738C9.59462 26.1438 11.0343 25.5311 12.7183 24.4963C14.7583 23.2426 17.0256 21.4503 19.238 19.238C21.4503 17.0256 23.2426 14.7583 24.4963 12.7183C25.5311 11.0343 26.1438 9.59463 26.3738 8.52504C26.5637 7.64204 26.4411 7.31369 26.4066 7.24189C26.345 7.21246 26.143 7.14535 25.6664 7.1918C24.9745 7.25925 23.9954 7.5498 22.7699 8.14278C20.3369 9.32007 17.3369 11.4915 14.4142 14.4142C11.4915 17.3369 9.32007 20.3369 8.14278 22.7699C7.5498 23.9954 7.25925 24.9745 7.1918 25.6664C7.14534 26.143 7.21246 26.345 7.24189 26.4066ZM29.9001 10.7285C29.4519 12.0322 28.7617 13.4172 27.9042 14.8126C26.465 17.1544 24.4686 19.6641 22.0664 22.0664C19.6641 24.4686 17.1544 26.465 14.8126 27.9042C13.4172 28.7617 12.0322 29.4519 10.7285 29.9001L21.5754 40.747C21.6001 40.7606 21.8995 40.931 22.8729 40.7217C23.9424 40.4916 25.3821 39.879 27.0661 38.8441C29.1062 37.5904 31.3734 35.7982 33.5858 33.5858C35.7982 31.3734 37.5904 29.1062 38.8441 27.0661C39.879 25.3821 40.4916 23.9425 40.7216 22.8729C40.931 21.8995 40.7606 21.6001 40.747 21.5754L29.9001 10.7285ZM29.2403 4.41187L43.5881 18.7597C44.9757 20.1473 44.9743 22.1235 44.6322 23.7139C44.2714 25.3919 43.4158 27.2666 42.252 29.1604C40.8128 31.5022 38.8165 34.012 36.4142 36.4142C34.012 38.8165 31.5022 40.8128 29.1604 42.252C27.2666 43.4158 25.3919 44.2714 23.7139 44.6322C22.1235 44.9743 20.1473 44.9757 18.7597 43.5881L4.41187 29.2403C3.29027 28.1187 3.08209 26.5973 3.21067 25.2783C3.34099 23.9415 3.8369 22.4852 4.54214 21.0277C5.96129 18.0948 8.43335 14.7382 11.5858 11.5858C14.7382 8.43335 18.0948 5.9613 21.0277 4.54214C22.4852 3.8369 23.9415 3.34099 25.2783 3.21067C26.5973 3.08209 28.1187 3.29028 29.2403 4.41187Z"
+                    fill="currentColor"
+                  ></path>
+                </g>
+                <defs>
+                  <clipPath id="clip0_6_543"><rect width="48" height="48" fill="white"></rect></clipPath>
+                </defs>
+              </svg>
+            </div>
+            <h2 class="text-[#181511] text-lg font-bold leading-tight tracking-[-0.015em]">Design Pro</h2>
+          </div>
+          <div class="flex flex-1 justify-end gap-8">
+            <div class="flex items-center gap-9">
+              <a class="text-[#181511] text-sm font-medium leading-normal" href="#">Home</a>
+              <a class="text-[#181511] text-sm font-medium leading-normal" href="#">Design</a>
+              <a class="text-[#181511] text-sm font-medium leading-normal" href="#">Contact</a>
+              <a class="text-[#181511] text-sm font-medium leading-normal" href="#">Services</a>
+            </div>
+            <button
+              class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-[#e69833] text-[#181511] text-sm font-bold leading-normal tracking-[0.015em]"
+            >
+              <span class="truncate">Get Started</span>
+            </button>
+          </div>
+        </header>
+        <div class="px-40 flex flex-1 justify-center py-5">
+          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+            <div class="flex flex-wrap justify-between gap-3 p-4">
+              <div class="flex min-w-72 flex-col gap-3">
+                <p class="text-[#181511] tracking-light text-[32px] font-bold leading-tight">Services</p>
+                <p class="text-[#887863] text-sm font-normal leading-normal">We provide a wide range of services to cater to all your interior design needs</p>
+              </div>
+            </div>
+            <h2 class="text-[#181511] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Modular Kitchen</h2>
+            <div class="flex overflow-y-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden">
+              <div class="flex items-stretch p-4 gap-3">
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/a86ac4e7-9fc1-4f46-bf90-65233b670feb.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Modern kitchen</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/1b0f083f-6fc5-446f-8da1-ab68ae336735.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Wooden kitchen</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+        <div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col image-container"
+             style='background-image: url("https://cdn.usegalileo.ai/sdxl10/94e2ca4e-f3a5-4669-82f1-c686d0747e52.png");'
+             onclick="openModal('https://cdn.usegalileo.ai/sdxl10/94e2ca4e-f3a5-4669-82f1-c686d0747e52.png')">
+        </div>
+        <p class="text-[#181511] text-base font-medium leading-normal">Blue kitchen</p>
+    </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/1b0f083f-6fc5-446f-8da1-ab68ae336735.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Grey kitchen</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/4afc1505-73a1-4880-8e7e-678c0ca3a4be.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Green kitchen</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/1b0f083f-6fc5-446f-8da1-ab68ae336735.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Red kitchen</p>
+                </div>
+              </div>
+            </div>
+            <h2 class="text-[#181511] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Storage and Wardrobe</h2>
+            <div class="flex overflow-y-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden">
+              <div class="flex items-stretch p-4 gap-3">
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/568b27a4-4b5c-458a-b872-5218a8975bb6.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Modern wardrobe</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/0380b02b-155e-48e8-8dae-c4966f6c0f8a.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Open shelves wardrobe</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/015ecc4e-c67e-464e-be82-11b8edbf6f73.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Hinged doors wardrobe</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/015ecc4e-c67e-464e-be82-11b8edbf6f73.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Glass doors wardrobe</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/83cc1491-0159-44c6-83d6-e44204feb485.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Wooden doors wardrobe</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/2e2de4b1-587c-41b1-aea2-aec7342b9816.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">White doors wardrobe</p>
+                </div>
+              </div>
+            </div>
+            <h2 class="text-[#181511] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Crockery Units</h2>
+            <div class="flex overflow-y-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden">
+              <div class="flex items-stretch p-4 gap-3">
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/77838cc8-1aa7-4ad4-9136-c69286daf46c.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Glass doors crockery unit</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/331ee1a4-baac-450b-bdc7-b168cda8a844.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Wooden doors crockery unit</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/ce700b0f-323b-42c3-bf74-c4bc2f5f3a82.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Open shelves crockery unit</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/3a4162e0-d25a-48a6-8c82-c34c7ae5618d.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Mirrored back crockery unit</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/77838cc8-1aa7-4ad4-9136-c69286daf46c.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Engraved pattern crockery unit</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/77838cc8-1aa7-4ad4-9136-c69286daf46c.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Metal frame crockery unit</p>
+                </div>
+              </div>
+            </div>
+            <h2 class="text-[#181511] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">TV Units</h2>
+            <div class="flex overflow-y-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden">
+              <div class="flex items-stretch p-4 gap-3">
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/01bccafd-92a6-49d9-8170-cb1686e81794.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Wall-mounted shelves TV unit</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/491b0036-c1f5-4b62-a060-021cc29543e8.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Cabinets and open shelves TV unit</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/251087bf-b10e-40d1-9754-0765f21fd085.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Floating design TV unit</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/c618b11d-f7de-4431-b982-af1c99b6c3b2.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">LED lights TV unit</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/251087bf-b10e-40d1-9754-0765f21fd085.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Glass doors TV unit</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/8d3bdc13-4a63-40d9-98e5-ddbbeaf8f917.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Display area TV unit</p>
+                </div>
+              </div>
+            </div>
+            <h2 class="text-[#181511] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Study Tables</h2>
+            <div class="flex overflow-y-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden">
+              <div class="flex items-stretch p-4 gap-3">
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/497415a9-4d4c-4cb5-961e-c91a74609fe9.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Bookshelf study table</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/b303fff7-0059-4ea9-a0ce-bb9b0e93ce7d.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Drawers study table</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/14a64839-bc4f-4104-90c6-c08ed265acfa.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Hutch study table</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/a131de87-3406-4e3c-8505-f247d2bc442a.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Keyboard tray study table</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/14a64839-bc4f-4104-90c6-c08ed265acfa.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Side storage study table</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/0b564679-aacf-45fc-9c60-d9e24ba014d0.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Metal legs study table</p>
+                </div>
+              </div>
+            </div>
+            <h2 class="text-[#181511] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">False Ceiling</h2>
+            <div class="flex overflow-y-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden">
+              <div class="flex items-stretch p-4 gap-3">
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/16e82c73-7c25-437a-a70e-113a8490d903.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Cove lighting false ceiling</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/2e54ce15-cddb-427e-aa36-cd099979f770.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Pop design false ceiling</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/16e82c73-7c25-437a-a70e-113a8490d903.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Wooden panels false ceiling</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/16e82c73-7c25-437a-a70e-113a8490d903.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Gypsum board false ceiling</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/5ebe1bc2-d238-45ec-a0d7-b0d74a7548fa.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Grid pattern false ceiling</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/a42e660e-d7a7-4bfd-b3f7-e2d17087a7bd.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Spotlights false ceiling</p>
+                </div>
+              </div>
+            </div>
+            <h2 class="text-[#181511] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Pooja Units</h2>
+            <div class="flex overflow-y-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden">
+              <div class="flex items-stretch p-4 gap-3">
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/f2fc740f-28a8-45d6-a565-999526f4cc7e.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Doors pooja unit</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/5aaef41d-7028-45b8-86c1-5ef95c765987.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Glass shelves pooja unit</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/753ca55d-7da4-4d68-974d-4fd0236285ab.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Carved design pooja unit</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/fc0b167d-24a1-4992-a194-11071315fe83.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">LED lights pooja unit</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/f2fc740f-28a8-45d6-a565-999526f4cc7e.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Drawers pooja unit</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/fc0b167d-24a1-4992-a194-11071315fe83.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Marble top pooja unit</p>
+                </div>
+              </div>
+            </div>
+            <h2 class="text-[#181511] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Bathrooms</h2>
+            <div class="flex overflow-y-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden">
+              <div class="flex items-stretch p-4 gap-3">
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/replicate/c04f72f6-18b7-4a42-87a7-5caa78dbf403.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Walk-in shower bathroom</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/ec9da355-60c2-4510-80cc-0399e76397d2.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Bathtub and shower combo bathroom</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/d04c1091-71b7-4c20-a432-89258e9c91b6.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Double vanity bathroom</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/a130a6b9-e0dc-4d6c-bcfe-16e9736538da.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Mosaic tiles bathroom</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/477e3309-50ed-40a4-9ff7-8d911db338ee.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Hanging lights bathroom</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/c680af12-4971-41a7-bc95-cea6e0966b32.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Wall-mounted toilet bathroom</p>
+                </div>
+              </div>
+            </div>
+            <h2 class="text-[#181511] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Foyer Design</h2>
+            <div class="flex overflow-y-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden">
+              <div class="flex items-stretch p-4 gap-3">
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/36ce35c1-84e1-428e-a8b2-0c0589259954.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Console table foyer design</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/c3c0a8e2-f64e-41fe-b76a-18766693bc6a.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Mirror and bench foyer design</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/9156d7b4-982b-4264-808c-d954291cbdc9.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Pendant light foyer design</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/0be2e1ee-c8cd-4661-bb7c-e28254740169.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Rug and artwork foyer design</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/9361a51c-4b46-43a8-8528-7f21e700f947.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Wall sconces foyer design</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/d55ed01b-9c68-4c16-9dca-fba7852e509d.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Plant and decor foyer design</p>
+                </div>
+              </div>
+            </div>
+            <h2 class="text-[#181511] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Kids' Bedrooms</h2>
+            <div class="flex overflow-y-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden">
+              <div class="flex items-stretch p-4 gap-3">
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/115b14af-b571-4492-bfab-33078e4499d2.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Bunk bed kids' bedroom</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/3e56f2a1-e6e5-4712-bbed-3057d4302f18.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Loft bed kids' bedroom</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/3e65fc2a-eb6a-435f-8f52-669574e8ef8a.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Twin bed kids' bedroom</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/4b93b5ef-314d-4a3e-9d59-9dbf9faab5cd.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Trundle bed kids' bedroom</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/replicate/88df393c-372c-4eaa-8515-53364bfb72e3.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Canopy bed kids' bedroom</p>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
+                    style='background-image: url("https://cdn.usegalileo.ai/sdxl10/08c5080f-5148-48ab-88fe-b380dcace3fa.png");'
+                  ></div>
+                  <p class="text-[#181511] text-base font-medium leading-normal">Race car bed kids' bedroom</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
