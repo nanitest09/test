@@ -12,3 +12,6 @@ phases:
       # - aws s3 sync build/ s3://mywebsitedeploy --region us-east-1 --delete
     finally:
       - echo "Build done successfully"
+  artifacts:
+    files:
+      - final.html
