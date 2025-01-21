@@ -14,4 +14,4 @@ phases:
       - echo "Build done successfully"
 artifacts:
   files:
-    - final.html
+    - '**/*'
