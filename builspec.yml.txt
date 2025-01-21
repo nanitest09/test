@@ -1,0 +1,14 @@
+version: 0.2
+
+phases:
+
+  pre_build:
+    commands:
+      - echo "Building website"
+
+  build:
+    commands:
+      - echo "Post-building website"
+      - aws s3 sync build/ s3://mywebsitedeploy --region us-east-1 --delete
+    finally:
+      - echo "Build done successfully"
